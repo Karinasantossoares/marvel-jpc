@@ -1,0 +1,7 @@
+<resources>
+    <string name="tab_bar_title">Listagem</string>
+    <string name="tab_bar_title_detail">Detalhe</string>
+    <string name="hint_description">Formerly known as Emil Blonsky, a spy of Soviet Yugoslavian origin working for the KGB, the Abomination gained his powers after receiving a dose of gamma radiation similar to that which transformed Bruce Banner into the incredible Hulk.</string>
+    <string name="empty_name">Nome vazio\n</string>
+    <string name="profile_text">Perfil</string>
+</resources>

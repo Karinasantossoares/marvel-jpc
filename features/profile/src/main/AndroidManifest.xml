@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity android:name="com.project.desafio_jpc.detail.com.project.desafio_jpc.list.presentation.detail.activity.MainDetailActivity" />
+        <activity android:name="com.project.desafio_jpc.detail.presentation.ProfileScreenActivity" />
+    </application>
+</manifest>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="tab_bar_title">Listagem</string>
+    <string name="internet_error">Opa, parece que você está sem internet.</string>
+    <string name="message_error_generic">Opa, algo deu errado. Tente novamento mais tarde.</string>
+</resources>
