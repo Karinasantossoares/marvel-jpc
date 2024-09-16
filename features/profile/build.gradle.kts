@@ -45,7 +45,7 @@ dependencies {
 
     //core
     implementation(project(":core:designsystem"))
-    implementation(project(":core:commom"))
+    implementation(project(":core:common"))
     implementation(project(":core:api"))
     implementation(project(":core:navigation"))
 

@@ -39,7 +39,7 @@ android {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
 }
-
 dependencies {
-    implementation(project(":core:commom"))
+    implementation(project(":core:common"))
 }
+

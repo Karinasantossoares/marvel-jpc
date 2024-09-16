@@ -26,6 +26,6 @@ include(":core:api")
 include(":core:persistence")
 include(":core:navigation")
 
-include(":features:list")
+include(":features:character")
 include(":features:profile")
-include(":core:commom")
+include(":core:common")

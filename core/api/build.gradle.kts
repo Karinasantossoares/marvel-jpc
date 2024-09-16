@@ -33,8 +33,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:common"))
     // retrofit
-    implementation(project(":core:commom"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

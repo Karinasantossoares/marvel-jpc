@@ -57,9 +57,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":features:list"))
+    implementation(project(":features:character"))
     implementation(project(":features:profile"))
-    implementation(project(":core:commom"))
+    implementation(project(":core:common"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:api"))
     implementation(project(":core:navigation"))
