@@ -56,5 +56,6 @@ dependencies {
     testImplementation (libs.mockk.agent)
     testImplementation (libs.mockk)
     testImplementation (libs.turbine)
-
+    androidTestImplementation (libs.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.test.manifest.v100beta05)
 }

@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 
 @Composable
 fun LoadingBuilder(
@@ -23,7 +24,9 @@ fun LoadingBuilder(
     ) {
         if (loading) {
             CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center)
+                modifier = Modifier
+                    .testTag("loading_center")
+                    .align(Alignment.Center)
             )
         } else {
             content()

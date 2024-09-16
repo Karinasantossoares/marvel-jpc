@@ -8,8 +8,6 @@ data class ListCharacterState(
     val isLoading: Boolean = false,
     val isLoadingPagination: Boolean = false,
     var listCharacter: MutableList<CharacterModel> = mutableListOf(),
-    var finishList: Boolean = false,
-    val emptyState: Boolean = false,
     val isGenericError: Boolean = false,
     val isError: Boolean = false,
     val isErrorWithCache: Boolean = false

@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -29,7 +30,7 @@ fun TemplateError(
 ) {
     if (isError) {
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize().testTag("template_error")
         ) {
             Spacer(modifier = Modifier.weight(1f))
             Image(
@@ -46,6 +47,7 @@ fun TemplateError(
             )
             Text(
                 modifier = modifier
+                    .testTag("text_error")
                     .fillMaxWidth()
                     .align(Alignment.CenterHorizontally)
                     .padding(dimensionResource(id = R.dimen.spacing_small)),

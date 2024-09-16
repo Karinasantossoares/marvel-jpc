@@ -18,7 +18,6 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 
 
 internal class CharacterViewModel(
@@ -80,11 +79,25 @@ internal class CharacterViewModel(
         }
         when (exception) {
             is ConnectionException -> {
-                _uiState.update { it.copy(isGenericError = false, isError = true, isLoading = false, isLoadingPagination = false) }
+                _uiState.update {
+                    it.copy(
+                        isGenericError = false,
+                        isError = true,
+                        isLoading = false,
+                        isLoadingPagination = false
+                    )
+                }
             }
 
             else -> {
-                _uiState.update { it.copy(isGenericError = true, isError = true, isLoading = false, isLoadingPagination = false) }
+                _uiState.update {
+                    it.copy(
+                        isGenericError = true,
+                        isError = true,
+                        isLoading = false,
+                        isLoadingPagination = false
+                    )
+                }
             }
         }
     }
