@@ -16,35 +16,15 @@ import org.koin.androidx.compose.koinViewModel
 internal fun CharacterRoute(
     viewModel: CharacterViewModel = koinViewModel(),
     goToDetail: (String) -> Unit,
-    onBackClick: () -> Unit,
     goToProfile: () -> Unit
 ) {
 
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-
-    val lazyListState = rememberLazyListState()
-
-    val endOfListReached by remember {
-        derivedStateOf {
-            val lastVisibleItemIndex = lazyListState.layoutInfo.visibleItemsInfo.lastOrNull()?.index
-            lastVisibleItemIndex == uiState.listCharacter.size - 1
-        }
-    }
-    LaunchedEffect(endOfListReached) {
-        if (endOfListReached) {
-            viewModel.getAllCharacter(true)
-        }
-    }
-
     when (val event: CharacterEvent = viewModel.uiEvent) {
         is CharacterEvent.NavigateToDetail -> {
             goToDetail(event.id)
-        }
-
-        CharacterEvent.NavigateToBack -> {
-            onBackClick()
         }
 
         CharacterEvent.NavigateToProfile -> {
@@ -56,18 +36,30 @@ internal fun CharacterRoute(
     }
     viewModel.clearEvent()
 
+    val lazyListState = rememberLazyListState()
+
+    val endOfListReached by remember {
+        derivedStateOf {
+            val lastVisibleItemIndex = lazyListState.layoutInfo.visibleItemsInfo.lastOrNull()?.index
+            lastVisibleItemIndex != null && lastVisibleItemIndex >= uiState.listCharacter.size - 1
+        }
+    }
+
+    LaunchedEffect(endOfListReached) {
+        if (endOfListReached) {
+            viewModel.getAllCharacter(true)
+        }
+    }
+
+
     CharacterScreen(
         state = uiState,
         lazyListState = lazyListState,
-        onBack = {
-            viewModel.onNavigateBack()
-        },
+
         goToDetail = { id ->
             viewModel.onNavigateToDetail(id)
         },
-        onChangeTab = { position ->
-            viewModel.onChangeTab(position)
-        },
+
         goToProfile = {
             viewModel.onNavigateToProfile()
         }

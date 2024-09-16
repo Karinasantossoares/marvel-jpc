@@ -42,9 +42,6 @@ class CharacterActivity : ComponentActivity() {
                                     )
                                 )
                             },
-                            onBackClick = {
-                                finish()
-                            },
                             goToProfile = {
                                 profileNavigation.goToProfileModule(this@CharacterActivity)
                             }

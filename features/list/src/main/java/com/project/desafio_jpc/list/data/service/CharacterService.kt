@@ -11,7 +11,8 @@ internal interface CharacterService {
 
     @GET("v1/public/characters")
     suspend fun getAllCharacters(
-        @Query("offset") limit: String? = null
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null
     ): ResultMarvelResponse<List<CharacterResultsResponse>?>
 
     @GET("/v1/public/characters/{id}")

@@ -65,4 +65,8 @@ internal class DetailViewModel(
     fun clearEvent() {
         uiEvent = CharacterDetailEvent.Nothing
     }
+
+    fun onBackClick(){
+        uiEvent = CharacterDetailEvent.OnBack
+    }
 }

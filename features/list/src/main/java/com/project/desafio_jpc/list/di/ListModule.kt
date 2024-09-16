@@ -1,5 +1,7 @@
 package com.project.desafio_jpc.list.di
 
+import com.project.desafio_jpc.list.data.datasource.local.CharacterLocalDataSource
+import com.project.desafio_jpc.list.data.datasource.local.CharacterLocalDataSourceImpl
 import com.project.desafio_jpc.list.data.datasource.remote.CharacterRemoteDataSource
 import com.project.desafio_jpc.list.data.datasource.remote.CharacterRemoteRemoteDataSourceImpl
 import com.project.desafio_jpc.list.data.repository.CharacterRepositoryImpl
@@ -17,7 +19,8 @@ object ListModule {
     fun listModule() = module {
         factory { get<Retrofit>().create(CharacterService::class.java) }
         factory<CharacterRemoteDataSource> { CharacterRemoteRemoteDataSourceImpl(get()) }
-        factory<CharacterRepository> { CharacterRepositoryImpl(get()) }
+        factory<CharacterLocalDataSource> { CharacterLocalDataSourceImpl(get()) }
+        factory<CharacterRepository> { CharacterRepositoryImpl(get(), get()) }
         factory { CharacterUseCase(repository = get()) }
         factory { CharacterViewModel(useCase = get()) }
 

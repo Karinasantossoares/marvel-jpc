@@ -26,5 +26,9 @@ internal fun CharacterDetailRoute(
     }
     viewModel.clearEvent()
 
-    CharacterDetailScreen(state = uiState)
+    CharacterDetailScreen(
+        state = uiState,
+        onBackClick = {
+            viewModel.onBackClick()
+        })
 }

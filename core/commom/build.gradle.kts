@@ -32,7 +32,6 @@ android {
     }
 
     buildFeatures {
-        compose = true
         buildConfig = true
     }
     composeOptions {
@@ -43,14 +42,14 @@ android {
 dependencies {
 
     //compose
-    api( libs.koin.androidx.compose)
+    api(libs.koin.androidx.compose)
     api(libs.coil.compose)
     api(libs.androidx.activity.compose)
     api(libs.androidx.compose.compiler)
     api(platform(libs.androidx.compose.bom))
     api(libs.androidx.lifecycle.viewmodel.compose)
     api(libs.androidx.ui.tooling.preview)
-    api (libs.androidx.navigation.compose)
+    api(libs.androidx.navigation.compose)
 
 
     //defaults
@@ -68,17 +67,9 @@ dependencies {
 
 
     //Retrofit
-    api (libs.retrofit)
-    api (libs.logging.interceptor)
-    api (libs.converter.gson)
+    api(libs.retrofit)
+    api(libs.logging.interceptor)
+    api(libs.converter.gson)
 
-    //Test
-    api(libs.junit)
-    api(libs.androidx.junit)
-    api(libs.androidx.espresso.core)
-    api(platform(libs.androidx.compose.bom))
-    api(libs.androidx.ui.test.junit4)
-    api(libs.androidx.ui.tooling)
-    api(libs.androidx.ui.test.manifest)
-    api(libs.viewmodel)
+
 }

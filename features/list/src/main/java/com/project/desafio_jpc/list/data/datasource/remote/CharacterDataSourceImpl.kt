@@ -20,12 +20,16 @@ internal class CharacterRemoteRemoteDataSourceImpl(
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : CharacterRemoteDataSource {
 
-    override fun getAllCharacters(incrementPage: String?): Flow<List<CharacterModel>> {
-        return flow { emit(service.getAllCharacters(incrementPage)) }.flowOn(dispatcher).map {
+    override fun getAllCharacters(offset: Int): Flow<List<CharacterModel>> {
+        return flow {
+            emit(
+                service.getAllCharacters(offset = offset)
+            )
+        }.flowOn(dispatcher).map {
             it.data.results?.toModel().orEmpty()
         }.catch { exception ->
             throw when (exception) {
-                is IOException -> ConnectionException
+                is IOException -> ConnectionException()
                 else -> HttpException
             }
         }
@@ -36,7 +40,7 @@ internal class CharacterRemoteRemoteDataSourceImpl(
             it.toModel()
         }.catch { exception ->
             throw when (exception) {
-                is IOException -> ConnectionException
+                is IOException -> ConnectionException()
                 else -> HttpException
             }
         }

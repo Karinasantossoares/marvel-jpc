@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -48,27 +49,15 @@ import com.project.desafio_jpc.list.presentation.list.components.CardItem
 import com.project.desafio_jpc.list.presentation.list.components.CharacterSearchBar
 import com.project.desafio_jpc.list.presentation.list.viewmodel.model.ListCharacterState
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CharacterScreen(
     state: ListCharacterState,
     lazyListState: LazyListState,
-    onBack: () -> Unit,
     goToDetail: (idCharacter: String) -> Unit,
-    onChangeTab: (tabPosition: Int) -> Unit,
     goToProfile: () -> Unit,
 ) {
     Scaffold(
-        floatingActionButton = {
-            ExtendedFloatingActionButton(onClick = { goToProfile() }) {
-                Icon(
-                    imageVector = Icons.Default.AccountCircle,
-                    tint = MaterialTheme.colorScheme.primary,
-                    contentDescription = stringResource(com.project.desafio_jpc.list.R.string.profile_text)
-                )
-            }
-
-        },
         topBar = {
             TopAppBar(
                 title = {
@@ -82,12 +71,12 @@ fun CharacterScreen(
                 ),
                 actions = {
                     IconButton(onClick = {
-                        onBack()
+                        goToProfile()
                     }) {
                         Icon(
-                            imageVector = Icons.Default.Close,
+                            imageVector = Icons.Default.Person,
                             tint = MaterialTheme.colorScheme.surface,
-                            contentDescription = stringResource(R.string.tab_bar_title)
+                            contentDescription = "perfil"
                         )
                     }
                 }
@@ -166,6 +155,19 @@ fun CharacterScreen(
                                         }
                                     }
                                 }
+
+                                if (state.isErrorWithCache) {
+                                    item {
+                                        Row(
+                                            modifier = Modifier
+                                                .padding(vertical = 16.dp)
+                                                .fillMaxWidth(),
+                                            horizontalArrangement = Arrangement.Center,
+                                        ) {
+                                           Text(text = "Você está sem internet")
+                                        }
+                                    }
+                                }
                             }
                         }
                     })
@@ -208,9 +210,7 @@ fun PreviewMyAppBar() {
                     ),
                 )
             ),
-            onBack = {},
             goToDetail = { },
-            onChangeTab = {},
             goToProfile = {}
         )
     }

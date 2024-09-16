@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -44,4 +45,16 @@ dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":core:commom"))
     implementation(project(":core:navigation"))
+    implementation(project(":core:persistence"))
+
+    //Test
+    testImplementation (libs.kotlinx.coroutines.test.jvm.v164)
+    testImplementation (libs.kotlinx.coroutines.test.v151)
+    testImplementation (libs.junit)
+    testImplementation (libs.androidx.core.testing)
+    testImplementation (libs.mockk.android.v1110)
+    testImplementation (libs.mockk.agent)
+    testImplementation (libs.mockk)
+    testImplementation (libs.turbine)
+
 }

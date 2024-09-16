@@ -35,12 +35,13 @@ import coil.compose.rememberAsyncImagePainter
 import com.project.desafio_jpc.designsystem.R
 import com.project.desafio_jpc.designsystem.theme.AppTheme
 import com.project.desafio_jpc.designsystem.theme.components.AppPrimaryButton
+import com.project.desafio_jpc.designsystem.theme.components.LoadingBuilder
 import com.project.desafio_jpc.designsystem.theme.components.TemplateError
 import com.project.desafio_jpc.list.presentation.detail.viewmodel.model.CharacterDetailState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CharacterDetailScreen(state: CharacterDetailState) {
+fun CharacterDetailScreen(state: CharacterDetailState, onBackClick: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -55,7 +56,7 @@ fun CharacterDetailScreen(state: CharacterDetailState) {
                 ),
                 actions = {
                     IconButton(onClick = {
-
+                        onBackClick()
                     }) {
                         Icon(
                             imageVector = Icons.Default.Close,
@@ -67,52 +68,55 @@ fun CharacterDetailScreen(state: CharacterDetailState) {
             )
         },
         content = { padding ->
-            TemplateError(
-                isError = state.isError,
-                genericError = state.isGenericError
-            ) {
-                Column(
-                    modifier = Modifier
-                        .padding(padding)
-                        .background(color = Color.White)
+            LoadingBuilder(loading = state.isLoading) {
+                TemplateError(
+                    isError = state.isError,
+                    genericError = state.isGenericError
                 ) {
-                    Row {
-                        Image(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .size(200.dp)
-                                .clip(RectangleShape)
-                                .align(Alignment.CenterVertically)
-                                .border(
-                                    width = 2.dp,
-                                    color = MaterialTheme.colorScheme.onTertiary,
-                                    shape = RectangleShape
-                                ),
-                            painter = rememberAsyncImagePainter(state.urlImage),
-                            contentDescription = "avatar",
-                            contentScale = ContentScale.Crop
-                        )
-                    }
-                    Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)) {
-                        Text(
-                            modifier = Modifier.padding(bottom = 16.dp),
-                            text = state.description,
-                            color = MaterialTheme.colorScheme.outline
-                        )
-                        LazyColumn {
-                            items(count = state.listComics.size) { index ->
-                                val item = state.listComics[index]
-                                Text(
-                                    modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.spacing_medium)),
-                                    text = item
-                                )
-                            }
+                    Column(
+                        modifier = Modifier
+                            .padding(padding)
+                            .background(color = Color.White)
+                    ) {
+                        Row {
+                            Image(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .size(200.dp)
+                                    .clip(RectangleShape)
+                                    .align(Alignment.CenterVertically)
+                                    .border(
+                                        width = 2.dp,
+                                        color = MaterialTheme.colorScheme.onTertiary,
+                                        shape = RectangleShape
+                                    ),
+                                painter = rememberAsyncImagePainter(state.urlImage),
+                                contentDescription = "avatar",
+                                contentScale = ContentScale.Crop
+                            )
                         }
-                        Spacer(modifier = Modifier.weight(1f))
-                        AppPrimaryButton(onClick = { /*TODO*/ }, textButton = state.textButton)
+                        Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)) {
+                            Text(
+                                modifier = Modifier.padding(bottom = 16.dp),
+                                text = state.description,
+                                color = MaterialTheme.colorScheme.outline
+                            )
+                            LazyColumn {
+                                items(count = state.listComics.size) { index ->
+                                    val item = state.listComics[index]
+                                    Text(
+                                        modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.spacing_medium)),
+                                        text = item
+                                    )
+                                }
+                            }
+                            Spacer(modifier = Modifier.weight(1f))
+                            AppPrimaryButton(onClick = { /*TODO*/ }, textButton = state.textButton)
+                        }
                     }
                 }
             }
+
         }
     )
 }
@@ -122,7 +126,8 @@ fun CharacterDetailScreen(state: CharacterDetailState) {
 fun DetailScreenPreview() {
     AppTheme {
         CharacterDetailScreen(
-            CharacterDetailState(
+            onBackClick = {},
+            state = CharacterDetailState(
                 textButton = "Salvar",
                 title = "Homem de ferro",
                 description = "O mais rico",
