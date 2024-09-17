@@ -9,8 +9,12 @@ separado.
 
 Listagem de Personagens: Apresenta uma lista dos personagens da Marvel, com possibilidade de navegar
 para os detalhes de cada um.
+
+
 Detalhes do Personagem: Fornece informações detalhadas sobre o personagem selecionado, dentro do
 mesmo módulo da listagem.
+
+
 Perfil do Usuário: A partir da tela de listagem, o usuário pode navegar para a tela de perfil, que
 está localizada em um módulo separado.
 
@@ -27,5 +31,5 @@ está localizada em um módulo separado.
 - Testes unitários
 - Testes de UI
 - Testes de integração
-- 
+- Canary
 
