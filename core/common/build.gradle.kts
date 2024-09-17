@@ -71,5 +71,9 @@ dependencies {
     api(libs.logging.interceptor)
     api(libs.converter.gson)
 
+    //canary
+    debugImplementation (libs.leakcanary.android)
+    releaseImplementation (libs.leakcanary.android.no.op)
+
 
 }

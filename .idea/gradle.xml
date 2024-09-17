@@ -12,12 +12,12 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/api" />
-            <option value="$PROJECT_DIR$/core/commom" />
+            <option value="$PROJECT_DIR$/core/common" />
             <option value="$PROJECT_DIR$/core/designsystem" />
             <option value="$PROJECT_DIR$/core/navigation" />
             <option value="$PROJECT_DIR$/core/persistence" />
             <option value="$PROJECT_DIR$/features" />
-            <option value="$PROJECT_DIR$/features/list" />
+            <option value="$PROJECT_DIR$/features/character" />
             <option value="$PROJECT_DIR$/features/profile" />
           </set>
         </option>
